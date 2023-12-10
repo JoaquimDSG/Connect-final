@@ -1,0 +1,583 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.App {
+  background-color:  #0d0d0d;
+  min-height: 100vh;
+}
+
+.logo {
+  position: relative;
+  left: 110px;
+  top: -300px;
+}
+
+.font-bold {
+  color: #707070;
+  height: 50px;
+  font-size: 85px;
+  font-style: arial;
+  height: 100px;
+  position: relative;
+  top: 30px;
+}
+
+.input__submit {
+  background-color: #bababa;
+  border-radius: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #7a7a7a;
+  color: white;
+  padding: 10px 75px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  position: relative;
+  top: 130px;
+  left: 35px;
+}
+
+.input1{
+  border-color: #707070;
+  border-width: 4px;
+  //background-color: #7a7a7a;
+  padding: 10px 65px;
+  border-radius: 10px;
+  position: relative;
+  top: 65px;
+  color: grey;
+}
+
+.input2{
+  border-color: #707070;
+  border-width: 4px;
+  border-style: solid;
+  //background-color: #7a7a7a;
+  position: relative;
+  top: 95px;
+  padding: 10px 65px;
+  border-radius: 10px;
+  color: grey;
+}
+
+
+
+.BUsuario {
+  background-image: url('../../public/Empleados.png');
+  background-position: center;
+  background-color: #00313d;
+  background-repeat: no-repeat;
+  border-width: 4px;
+  border-radius: 20px;
+  border-color: #00232c;
+  color: white;
+  padding: 120px 180px;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-right: 110px;
+}
+
+.BTrabajo {
+  background-image: url('../../public/Trabajo.png');
+  background-position: center;
+  background-color: #00313d;
+  background-repeat: no-repeat;
+  border-width: 4px;
+  border-radius: 20px;
+  border-color: #00232c;
+  color: white;
+  padding: 120px 180px;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-left: 150px;
+  }
+
+.input__box {
+  outline: none;
+  background-color: transparent; 
+  text-align: center; 
+}
+
+::placeholder { 
+  color: #454747;
+  font-size: 1.2em;
+}
+
+.SILike {
+  background-image: url('../../public/Like.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #2a7096;
+  border-radius: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #235c7d;
+  padding: 45px 85px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+
+}
+
+.NOLike {
+  background-image: url('../../public/NoLike.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #2a7096;
+  border-radius: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #235c7d;
+  padding: 45px 85px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.superior {
+  border-width: 4px;
+  border-bottom: none;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-color: #00232c;
+  margin-left: 400px;
+  margin-right: 400px;
+  height: 450px;
+  display: flex;
+  background-color: #00313d;
+  margin-top: -100px;
+}
+
+.inferior {
+  border-width: 4px;
+  border-top: none;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-color: #00232c;
+  margin-left: 400px;
+  margin-right: 400px;  
+  margin-bottom: 30px;
+  height: 150px;
+  display: flex;
+  background-color: #00313d;
+}
+
+.superior-izquierda {
+  flex-grow: 1;
+  width: 50%;
+  margin-top: 15px;
+  border-color: white;
+}
+
+.superior-derecha {
+  width: 50%;
+  margin-top: 15px;
+  margin-right: 15px; 
+}
+
+.inferior-izquierda {
+  width: 50%;
+  text-align: center;
+  align-self: center;
+}
+
+.inferior-derecha {
+  width: 50%;
+  text-align: center;
+  align-self: center;
+}
+
+.info {
+  margin-left: 20px;
+  color: #cfcfcf;
+  display: block;
+  width: 250px;
+}
+
+.aptitudes {
+  margin-left: 20px;
+  color: #cfcfcf;
+  display: block;
+  width: 250px;
+}
+
+.cuadro {
+  background-color: #0d0d0d;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 25px;
+}
+
+.fondoFirst {
+  background-repeat: no-repeat;
+  background-position-y: 20px;
+  background-position-x: -20px;
+  background-color: #0d0d0d;
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  text-align: center;
+}
+
+.derecha {
+  width: 50%;
+  text-align: center;
+}
+
+.izquierda {
+  width: 50%;
+  text-align: center;
+}
+
+.cuadroTrabajo{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.derechaTrabajo{
+  width: 70%;
+}
+
+.izquierdaTrabajo{
+  width: 30%;
+  background-position-y: 20px;
+  background-position-x: -20px;
+  background-color: #0d0d0d;
+}
+
+.t1{
+  background-color: #00313d;
+  border-radius: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #00232c;
+  padding: 120px 170px;
+  margin-left: 75px;
+  margin-top: 40px;
+}
+
+.t2{
+  background-color: #00313d;
+  border-radius: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #00232c;
+  padding: 120px 170px;
+  margin-left: -75px;
+  margin-top: 40px;
+}
+
+.t3{
+  background-color: #00313d;
+  border-radius: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #00232c;
+  padding: 120px 170px;
+  margin-left: 75px;
+  margin-bottom: 40px;
+}
+
+.t4{
+  background-color: #00313d;
+  border-radius: 30px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #00232c;
+  padding: 120px 170px;
+  margin-left: -75px;
+  margin-bottom: 40px;
+}
+
+.superiorTrabajo{
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  display: flex;
+  background-color: #0d0d0d;
+}
+
+.inferiorTrabajo{
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  display: flex;
+  background-color: #0d0d0d;
+}
+
+.superior-izquierda-Trabajo{
+  width: 50%;
+  align-self: center;
+  align-items: center;
+}
+
+.superior-derecha-Trabajo{
+  width: 50%;
+  align-self: center;
+  align-items: center;
+}
+
+.inferior-izquierda-Trabajo{
+  width: 50%;
+  align-self: center;
+  align-items: center;
+}
+
+.inferior-derecha-Trabajo{
+  width: 50%;
+  align-self: center;
+  align-items: center;
+}
+
+.Mensajes{
+  background-image: url('../../public/Mensajes.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  border-radius: 15px;
+  border-width: 3px;
+  border-color: white;
+  width: 95px;
+  height: 95px;
+  margin-top: -90px;
+  margin-left: 1200px;
+}
+
+.arribaFirst{
+  height: 30vh;
+  background-color: #0d0d0d;
+}
+
+.fondoTotal{
+  width: 100vw;
+  height: 100vh;
+}
+
+.cuadroMensajes{
+  background-color: #0d0d0d;
+  width: 100vw;
+  height: 100vh;
+}
+
+.superiorMensajes{
+  height: 25%;
+  background-image: url('../../public/connectLogoCuadro.png');
+  background-repeat: no-repeat;
+  background-position-y: 20px;
+  background-position-x: -20px;
+}
+
+.inferiorMensajes{
+  height: 75%;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.m1{
+  background-image: url('../../public/Persona1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120px 120px;;
+  padding: 60px 60px;
+  border-width: 3px;
+  border-color: #00232c;
+  border-radius: 100px;
+  margin-top: 60px;
+  margin-left: 100px;
+}
+
+.m2{
+  background-image: url('../../public/Persona2.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120px 120px;;
+  padding: 60px 60px;
+  border-width: 3px;
+  border-color: #00232c;
+  border-radius: 100px;
+  margin-top: 60px;
+  margin-left: 50px;
+}
+
+.m3{
+  background-image: url('../../public/Persona3.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 130px 132px;;
+  padding: 60px 60px;
+  border-width: 3px;
+  border-color: #00232c;
+  border-radius: 100px;
+  margin-top: 60px;
+}
+
+.m4{
+  background-image: url('../../public/Persona4.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120px 120px;;
+  padding: 60px 60px;
+  border-width: 3px;
+  border-color: #00232c;
+  border-radius: 100px;
+  margin-top: 60px;
+  margin-right: 50px;
+}
+
+.m5{
+  background-image: url('../../public/Persona5.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120px 120px;;
+  padding: 60px 60px;
+  border-width: 3px;
+  border-color: #00232c;
+  border-radius: 100px;
+  margin-top: 60px;
+  margin-right: 100px;
+}
+
+.ml1{
+  width:125px;
+  height: 30px;
+  display: block;
+  border-radius: 100px;
+  color: grey;
+  margin-left: 100px;
+}
+
+.ml2{
+  width:125px;
+  height: 30px;
+  display: block;
+  border-radius: 100px;
+  color: grey;
+  margin-left: 50px;
+}
+
+.ml3{
+  width:125px;
+  height: 30px;
+  display: block;
+  border-radius: 100px;
+  color: grey;
+}
+
+.ml4{
+  width:125px;
+  height: 30px;
+  display: block;
+  border-radius: 100px;
+  color: grey;
+  margin-right: 50px;
+}
+
+.ml5{
+  width:125px;
+  height: 30px;
+  display: block;
+  border-radius: 100px;
+  color: grey;
+  margin-right: 100px;
+}
+
+.persona1{
+  width: 20%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.persona2{
+  width: 20%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.persona3{
+  width: 20%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.persona4{
+  width: 20%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.persona5{
+  width: 20%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.atrasTrabajo{
+  background-image: url('../../public/connectLogoCuadro.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: -15px;
+  background-position-x: -20px;
+  height: 90px;
+  width: 375px;
+  margin-top: 35px;
+  border-top-right-radius: 45px;
+  border-bottom-right-radius: 45px;
+}
+
+.atrasFirst{
+  background-image: url('../../public/connectLogoCuadro.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: -15px;
+  background-position-x: -20px;
+  margin-top: 35px;
+  height: 90px;
+  width: 375px;
+  border-top-right-radius: 45px;
+  border-bottom-right-radius: 45px;
+}
+
+.atrasMensajes{
+  background-image: url('../../public/connectLogoCuadro.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: -15px;
+  background-position-x: -20px;
+  margin-top: 35px;
+  height: 90px;
+  width: 375px;
+  border-top-right-radius: 45px;
+  border-bottom-right-radius: 45px;
+}
+
+.atrasPerfil{
+  background-image: url('../../public/connectLogoCuadro.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: -15px;
+  background-position-x: -20px;
+  margin-top: 10px;
+  height: 90px;
+  width: 375px;
+  border-top-right-radius: 45px;
+  border-bottom-right-radius: 45px;
+}

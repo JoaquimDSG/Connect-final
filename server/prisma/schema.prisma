@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Usuarios {
+  id                       Int     @id @unique @default(autoincrement())
+  nombre                   String
+  apellido                 String
+  email                    String  @unique
+  password                 String
+  edad                     Int
+  Hobbie                   String? @default("Ninguno")
+  Trabajo                  String? @default("Ninguno")
+  Localidad                String
+  Direccion                String?
+  Pais                     String
+  Preferencias_laborales   String? @default("Ninguna")
+  Genero                   String
+  Experiencia_Laboral      String? @default("Ninguna")
+  Preferencia_distancia    String? @default("8KM")
+  Que_necesitaria          String?
+  Preferencias_Experiencia String?
+  user_that_liked          Int[]
+  Empresa                  Boolean
+}
+
+model Empleador {
+  id                       Int     @id @unique @default(autoincrement())
+  edad                     Int
+  email                    String  @unique
+  password                 String
+  Que_necesitaria          String
+  Localidad                String
+  Direccion                String?
+  Pais                     String
+  Preferencias_Experiencia String? @default("5 años")
+  Genero                   String
+  Preferencia_distancia    String? @default("8KM")
+}
+
+
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
