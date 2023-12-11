@@ -1,82 +1,46 @@
-/*
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import React, { FormEvent, useState } from "react";
+import { GetServerSideProps } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
-import Perfil from '@/components/perfil';
+import React from 'react';
+import ConsultaRegistros from './api/ConsultaRegistros';
 
-const First = () => {
-    
-    return (
-        <>
- 
-            <div>
-                <Perfil></Perfil>
-            </div>
-
-        </>
-    );
-    
+interface EmpleadosProps {
+  email: string;
 }
 
-export default First;
-*/
+const Empleados: React.FC<EmpleadosProps> = ({ email }) => {
+  return (
+        <form className="cuadro"> 
+        <Link href={{ pathname: 'first', query: { email } }}> <button className="atrasPerfil" type="submit"></button> </Link>
+             <div className = "superior">
+                     <label className= "info"> Información del perfil </label>
+                     <ConsultaRegistros email={email}/>
+             </div>
+             <div className = "inferior">
+                 <div className = "inferior-izquierda">
+                    <Link href={{ pathname: 'editar-perfil', query: { email } }}><button className="NOLike" type="submit"></button> </Link>
+                 </div>
+                 <div className = "inferior-derecha">
+                     <button className="SILike" type="submit"></button>
+                 </div>
+             </div>
+         </form>   
+     );
 
-/*
-// Import necessary modules
-import React, { useEffect, useState } from "react";
-import Perfil from '@/components/perfil';
-
-const First = () => {
-    const [users, setUsers] = useState([]);
-
-    // Fetch user data from the backend when the component mounts
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await fetch("/api/users"); // Assuming your API endpoint is /api/users
-                const data = await response.json();
-                setUsers(data);
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-            }
-        };
-
-        fetchUsers();
-    }, []);
-
-    return (
-        <>
-            <div>
-                <Perfil users={users}></Perfil>
-            </div>
-        </>
-    );
+ //             {/* Pasa la variable 'email' a la próxima página */}
+ //             <Link href={{ pathname: 'empleados', query: { email } }}><button className="BUsuario" type="submit"></button> </Link>
+        
 };
 
-export default First;
-*/
+// Esta función se ejecuta en el servidor, proporciona las props a la página
+export const getServerSideProps: GetServerSideProps<EmpleadosProps> = async (context) => {
+  // Obtén el parámetro de la URL (en este caso, el correo electrónico)
+  const { email } = context.query;
 
-// Import necessary modules
-import React from "react";
-
-// Define prop types for the Perfil component
-interface PerfilProps {
-    users: any[]; // Update this type based on your actual user data structure
-}
-
-// Perfil component
-const Perfil: React.FC<PerfilProps> = ({ users }) => {
-    // Your Perfil component logic here
-    return (
-        <div>
-            {/* Render user data here */}
-            {users.map((user) => (
-                <div key={user.id}>{/* Render user details */}</div>
-            ))}
-        </div>
-    );
+  // Devuelve las props, que incluyen el correo electrónico
+  return {
+    props: { email: email as string },
+  };
 };
 
-export default Perfil;
-
+export default Empleados;

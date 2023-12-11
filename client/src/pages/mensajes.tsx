@@ -2,13 +2,16 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import React, { FormEvent, useState } from "react";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const First = () => {
+const First: React.FC = () => {
+    const router = useRouter();
+    const { email } = router.query;
     
     return (
         <form className = "cuadroMensajes">
             <header className = "superiorMensajes">
-                <Link href="first"> <button className="atrasMensajes" type="submit"></button> </Link>
+                <Link href={{ pathname: 'first', query: { email } }}> <button className="atrasMensajes" type="submit"></button> </Link>
             </header>
             <div className = "inferiorMensajes">
                 <div className="persona1">

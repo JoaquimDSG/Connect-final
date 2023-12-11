@@ -1,11 +1,14 @@
 import react from 'react'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const Trabajo = () => {
+const Trabajo: React.FC = () => {
+    const router = useRouter();
+    const { email } = router.query;
     return (
        <form className="cuadroTrabajo"> 
             <div className = "izquierdaTrabajo"> 
-                <Link href="first"> <button className="atrasTrabajo" type="submit"></button> </Link>
+                <Link href={{ pathname: 'first', query: { email } }}> <button className="atrasTrabajo" type="submit"></button> </Link>
             </div>
             <div className = "derechaTrabajo">
                 <div className = "superiorTrabajo">

@@ -18,7 +18,7 @@ async function registro(req, res) {
 
         await prisma.Usuarios.create({ data: { nombre: name, apellido: surname, email, password: hashedPassword, edad, Localidad, Pais, Genero, Empresa } })
         
-        return res.status(200).json({msg: "Usuario creado con existo"});
+        return res.status(200).json({msg: "Usuario creado con exito"});
     };
 }
 
