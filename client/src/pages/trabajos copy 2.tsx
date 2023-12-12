@@ -1,10 +1,13 @@
-import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-const trabajos: React.FC = () => {
-  const router = useRouter();
-  const { email } = router.query;
+interface BuscarUsuariosProps {
+  email: string;
+}
+
+const BuscarUsuarios: React.FC<BuscarUsuariosProps> = ({ email }) => {
   const [campoSeleccionado, setCampoSeleccionado] = useState('nombre');
   const [valorBusqueda, setValorBusqueda] = useState('');
   const [resultados, setResultados] = useState([]);
@@ -32,7 +35,7 @@ const trabajos: React.FC = () => {
   };
   
   return (
-    <div className = "fondoTotal">
+    <form className="cuadro"> 
     <Link href={{ pathname: 'first', query: { email } }}> <button className="atrasPerfil" type="submit"></button> </Link>  
       <div>
       <h1>Buscar Usuarios</h1>
@@ -62,8 +65,19 @@ const trabajos: React.FC = () => {
           </li>
         ))}
      </div>
-    </div>
+    </form>
   );
 };
 
-export default trabajos;
+// Esta función se ejecuta en el servidor, proporciona las props a la página
+export const getServerSideProps: GetServerSideProps<BuscarUsuariosProps> = async (context) => {
+  // Obtén el parámetro de la URL (en este caso, el correo electrónico)
+  const { email } = context.query;
+
+  // Devuelve las props, que incluyen el correo electrónico
+  return {
+    props: { email: email as string },
+  };
+};
+
+export default BuscarUsuarios;

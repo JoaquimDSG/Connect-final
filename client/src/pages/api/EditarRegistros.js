@@ -14,10 +14,9 @@ const EditarRegistro = ({ email }) => {
   const [nuevoPais, setNuevoPais] = useState('');
   const [nuevasPreferencias_laborales, setNuevasPreferencias_laborales] = useState('');
   const [nuevoGenero, setNuevoGenero] = useState('');
-  const [nuevaExperiencia_Laboral, setNuevaExperiencia_Laboral] = useState('');
-  const [nuevaPreferencia_distancia, setNuevaPreferencia_distancia] = useState('');
+  const [nuevaExperiencia_Laboral, setNuevaExperiencia_Laboral] = useState(0); // Cambia a tu tipo de dato correspondiente
+  const [nuevaPreferencia_distancia, setNuevaPreferencia_distancia] = useState(0); // Cambia a tu tipo de dato correspondiente
   const [nuevaQue_necesitaria, setNuevaQue_necesitaria] = useState('');
-  const [nuevasPreferencias_Experiencia, setNuevasPreferencias_Experiencia] = useState('');
   const [nuevaEmpresa, setNuevaEmpresa] = useState(false);
 
   useEffect(() => {
@@ -41,10 +40,9 @@ const EditarRegistro = ({ email }) => {
         setNuevoPais(data[0]?.Pais || '');
         setNuevasPreferencias_laborales(data[0]?.Preferencias_laborales || '');
         setNuevoGenero(data[0]?.Genero || '');
-        setNuevaExperiencia_Laboral(data[0]?.Experiencia_Laboral || '');
-        setNuevaPreferencia_distancia(data[0]?.Preferencia_distancia || '');
+        setNuevaExperiencia_Laboral(data[0]?.Experiencia_Laboral);
+        setNuevaPreferencia_distancia(data[0]?.Preferencia_distancia);
         setNuevaQue_necesitaria(data[0]?.Que_necesitaria || '');
-        setNuevasPreferencias_Experiencia(data[0]?.Preferencias_Experiencia || '');
         setNuevaEmpresa(data[0]?.Empresa || false)
       } catch (error) {
         console.error(error.message);
@@ -78,7 +76,6 @@ const EditarRegistro = ({ email }) => {
           nuevaExperiencia_Laboral,
           nuevaPreferencia_distancia,
           nuevaQue_necesitaria,
-          nuevasPreferencias_Experiencia,
           nuevaEmpresa
         }),
       });
@@ -111,7 +108,6 @@ const EditarRegistro = ({ email }) => {
         <p>Experiencia Laboral actual: {registro.Experiencia_Laboral}</p>
         <p>Preferencia distancia actual: {registro.Preferencia_distancia}</p>
         <p>Que necesitaria actualmente: {registro.Que_necesitaria}</p>
-        <p>Preferencias de Experiencia actuales: {registro.Preferencias_Experiencia}</p>
         <p>Es Empresa: {registro.Empresa ? 'Activo' : 'Inactivo'}</p>*/}
       </div>
       <div>
@@ -156,9 +152,6 @@ const EditarRegistro = ({ email }) => {
         </div>
         <div>
         <label>Nueva Que necesitaria:</label><input type="text" value={nuevaQue_necesitaria} onChange={(e) => setNuevaQue_necesitaria(e.target.value)} />
-        </div>
-        <div>
-        <label>Nuevas Preferencias Experiencia:</label><input type="text" value={nuevasPreferencias_Experiencia} onChange={(e) => setNuevasPreferencias_Experiencia(e.target.value)} />
         </div>
         <div>
         <label>Nuevo estado Empresa:</label>

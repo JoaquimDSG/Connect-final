@@ -1,0 +1,53 @@
+// En tu componente de React (por ejemplo, BuscarEmpleadoresCriterios.js)
+import React, { useEffect, useState } from 'react';
+
+interface EmpleadosProps {
+    userEmail: string;
+  }
+
+const BuscarEmpleadoresCriterios : React.FC<EmpleadosProps> = ({ userEmail }) => {
+  const [resultados, setResultados] = useState({ userEmail: '', Empleadores: [] });
+
+  useEffect(() => {
+    const fetchEmpleadoresCriterios = async () => {
+      try {
+        const response = await fetch('/api/buscar-empleadores-criterios', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: userEmail }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setResultados({ userEmail, Empleadores: data.Empleadores });
+        } else {
+          console.error('Error al buscar empleadores con criterios:', data.error);
+        }
+      } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+      }
+    };
+
+    fetchEmpleadoresCriterios();
+  }, [userEmail]);
+
+  return (
+    <div>
+      <h1>Lista de Empleadores con Criterios</h1>
+      <p>Correo electrónico del usuario: {resultados.userEmail}</p>
+      <ul>
+        {resultados.Empleadores.map((Empleador) => (
+          <li key={Empleador.id}>
+            {Empleador.direccion} - {Empleador.email}
+            {/* Agrega otros campos según tus necesidades */}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default BuscarEmpleadoresCriterios;

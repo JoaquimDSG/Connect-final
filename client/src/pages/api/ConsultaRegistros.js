@@ -47,10 +47,9 @@ const ConsultaRegistros = ({ email }) => {
             <p>Pais: {registro.Pais}</p>
             <p>Preferencias Laborales: {registro.Preferencias_laborales || 'Ninguna'}</p>
             <p>Genero: {registro.Genero}</p>
-            <p>Experiencia Laboral: {registro.Experiencia_Laboral || 'Ninguna'}</p>
-            <p>Preferencia Distancia: {registro.Preferencia_distancia || '8KM'}</p>
+            <p>Experiencia Laboral: {registro.Experiencia_Laboral}</p>
+            <p>Preferencia Distancia: {registro.Preferencia_distancia}</p>
             <p>Que Necesitaría: {registro.Que_necesitaria || 'Ninguna'}</p>
-            <p>Preferencias Experiencia: {registro.Preferencias_Experiencia || 'Ninguna'}</p>
             <p>Usuarios que le gustaron: {registro.user_that_liked.join(', ') || 'Ninguno'}</p>
             <p>Empresa: {registro.Empresa ? 'Sí' : 'No'}</p>
             <hr />

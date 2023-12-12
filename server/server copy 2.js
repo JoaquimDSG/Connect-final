@@ -11,8 +11,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SECRET_KEY = 'tu_clave_secreta'; // Cambia esto en producción
 
-//const buscarEmpleadores = require('./api/buscar-empleadores');
-
 require('dotenv').config();
 
 // Middleware para permitir solicitudes desde el frontend
@@ -70,7 +68,7 @@ const { email } = req.params;
 
 // Endpoint para nuevos registros
 app.post('/api/registro', async (req, res) => {
-    const { nombre, apellido, email, password, edad, Hobbie, Trabajo, Localidad, Direccion, Pais, Preferencias_laboral, Genero, Experiencia_Laboral, Preferencia_distancia, Que_necesitaria, Empresa } = req.body;
+    const { nombre, apellido, email, password, edad, Hobbie, Trabajo, Localidad, Direccion, Pais, Preferencias_laborale, Genero, Experiencia_Laboral, Preferencia_distancia, Que_necesitaria, Preferencias_Experiencia, Empresa } = req.body;
   
     try {
       // Verifica si el usuario ya existe
@@ -98,11 +96,12 @@ app.post('/api/registro', async (req, res) => {
           Localidad,
           Direccion,
           Pais,
-          Preferencias_laboral,
+          Preferencias_laborale,
           Genero,
           Experiencia_Laboral,
           Preferencia_distancia,
           Que_necesitaria,
+          Preferencias_Experiencia,
           Empresa
         },
       });
@@ -122,7 +121,7 @@ app.post('/api/like/:email', async (req, res) => {
 
 // Endpoint para modificar registros
 app.post('/api/modificar-registro', async (req, res) => {
-  const { email, nuevoNombre, nuevaPassword, nuevoApellido, nuevaEdad, nuevoHobbie, nuevoTrabajo, nuevaLocalidad, nuevaDireccion, nuevoPais, nuevasPreferencias_laborales, nuevoGenero, nuevaExperiencia_Laboral, nuevaPreferencia_distancia, nuevaQue_necesitaria, nuevaEmpresa } = req.body;
+  const { email, nuevoNombre, nuevaPassword, nuevoApellido, nuevaEdad, nuevoHobbie, nuevoTrabajo, nuevaLocalidad, nuevaDireccion, nuevoPais, nuevasPreferencias_laborales, nuevoGenero, nuevaExperiencia_Laboral, nuevaPreferencia_distancia, nuevaQue_necesitaria, nuevasPreferencias_Experiencia, nuevaEmpresa } = req.body;
     
   // Hash de la contraseña antes de almacenarla
   const hashedPassword = await bcrypt.hash(nuevaPassword, 10);
@@ -146,6 +145,7 @@ app.post('/api/modificar-registro', async (req, res) => {
         Experiencia_Laboral: nuevaExperiencia_Laboral,
         Preferencia_distancia: nuevaPreferencia_distancia,
         Que_necesitaria: nuevaQue_necesitaria,
+        Preferencias_Experiencia: nuevasPreferencias_Experiencia,
         Empresa: nuevaEmpresa
       },
     });
@@ -158,51 +158,16 @@ app.post('/api/modificar-registro', async (req, res) => {
   }
 });
 
-
-app.post('/api/buscar-usuarios', async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).end(); // Método no permitido
-  }
-
-  const { campo, valor } = req.body;
-
+app.post('/api/filtrar-usuarios', async (req, res) => {
   try {
-    let condition = {};
-
-    // Verificar si el valor es un número
-    if (!isNaN(valor)) {
-      condition = {
-        [campo]: parseInt(valor), // Convertir a número
-      };
-    } else {
-      condition = {
-        [campo]: {
-          contains: valor, // Búsqueda de texto
-        },
-      };
-    }
-
-    const usuarios = await prisma.usuarios.findMany({
-      where: condition,
-    });
-
-    res.status(200).json({ usuarios });
-  } catch (error) {
-    console.error('Error al buscar usuarios:', error);
-    res.status(500).json({ error: 'Error al buscar usuarios' });
-  }
-}),
-
-{/*app.post('/api/filtrar-usuarios', async (req, res) => {
-  try {
-    const { nombre, genero, edad, Experiencia_Laboral } = req.body;
+    const { nombre, genero, edad, yearsDeExperiencia } = req.body;
 
     const usuariosFiltrados = await prisma.usuarios.findMany({
       where: {
         nombre: { contains: nombre || '' },
         genero: { contains: genero || '' },
         edad: { equals: edad || 0 },
-        Experiencia_Laboral: { gte: Experiencia_Laboral || 0 },
+        years_de_experiencia: { gte: yearsDeExperiencia || 0 },
       },
     });
 
@@ -211,37 +176,8 @@ app.post('/api/buscar-usuarios', async (req, res) => {
     console.error('Error al filtrar usuarios:', error);
     res.status(500).json({ error: 'Error al filtrar usuarios' });
   }
-});*/}
-
-app.post('/api/buscar-empleadores-criterios', async (req, res) => {
-  try {
-    const { email } = req.body;
-
-    // Obtén el usuario actual
-    const usuario = await prisma.usuarios.findUnique({
-      where: {
-        email,
-      },
-    });
-
-    if (!usuario) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
-    }
-
-    // Busca empleadores que cumplan con los criterios
-    const empleadores = await prisma.empleador.findMany({
-      where: {
-        Preferencias_Experiencia: { lte: usuario.Experiencia_Laboral },
-        Preferencia_distancia: { lte: usuario.Preferencia_distancia },
-      },
-    });
-
-    res.json({ empleadores });
-  } catch (error) {
-    console.error('Error al buscar empleadores con criterios:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
-  }
 });
+
 
 // Manejo de rutas no encontradas
 app.use((req, res) => {

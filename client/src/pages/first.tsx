@@ -15,7 +15,7 @@ const First: React.FC = () => {
       <form className= "fondoFirst">
       
           <div className="izquierda">
-              <Link href="trabajos"> <button className="BTrabajo" type="submit"></button> </Link>
+              <Link href={{ pathname: 'trabajos', query: { email } }}> <button className="BTrabajo" type="submit"></button> </Link>
           </div>
 
           <div className="derecha">

@@ -78,7 +78,6 @@ async function getUser(req, res) {
           Genero: true,
           Experiencia_Laboral: true,
           Que_necesitaria: true,
-          Preferencias_Experiencia: true,
           user_that_liked: true,
           Empresa: true, 
         },
@@ -140,5 +139,9 @@ async function Like(req, res) {
     });
   }
 }
+
+
+
+
 
 module.exports = {login, registro, getUser, Like};

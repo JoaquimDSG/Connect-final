@@ -1,0 +1,20 @@
+// tu-ruta/buscar-empleadores.js
+
+const express = require('express');
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+const router = express.Router();
+
+router.get('/', async (req, res) => {
+  try {
+    // Lógica de la ruta
+    const empleadores = await prisma.empleador.findMany(); // Modificar según tus necesidades
+    res.json({ empleadores });
+  } catch (error) {
+    console.error('Error al buscar empleadores:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+
+module.exports = router;

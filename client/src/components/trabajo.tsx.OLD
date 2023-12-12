@@ -1,0 +1,226 @@
+// Importaciones necesarias
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+
+interface Usuario {
+  nombre: string;
+  genero: string;
+  edad: number;
+  yearsDeExperiencia: number;
+  // ... Agrega más detalles según tu modelo de datos
+}
+
+// Componente Trabajo
+const Trabajo: React.FC = () => {
+  const [usuariosFiltrados, setUsuariosFiltrados] = React.useState<Usuario[]>([]);
+  const router = useRouter();
+  const { email } = router.query;
+
+  const [filtro, setFiltro] = useState({
+    nombre: '',
+    genero: '',
+    edad: 0,
+    yearsDeExperiencia: 0,
+  });
+
+  useEffect(() => {
+    
+    console.log("hola");
+    const fetchData = async () => {
+            
+    try {
+       
+        const response = await fetch('http://localhost:3000/api/filtrar-usuarios', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+
+//          body: {
+
+//          }
+          
+        });
+  
+        const data = await response.json();
+        console.log('Respuesta del servidor:', data);
+        if (response.ok){
+            alert("hola")
+        }
+      } catch (error) {
+
+        console.error('Error al enviar la solicitud:', error);
+      }
+ }
+  fetchData();
+
+    }, [filtro.nombre]);
+
+
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFiltro((prevFiltro) => ({ ...prevFiltro, [name]: value }));
+  };
+
+  const handleNumberInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFiltro((prevFiltro) => ({ ...prevFiltro, [name]: parseInt(value, 10) }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    
+    try {
+      // Envia la solicitud al backend utilizando fetch
+      const response = await fetch('/api/filtrar-usuarios', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(filtro),
+      });
+
+      // Maneja la respuesta del backend
+      const data = await response.json();
+      console.log('Respuesta del servidor:', data);
+
+      // Actualiza el estado con los usuarios filtrados
+      setUsuariosFiltrados(data);
+    } catch (error) {
+      // Maneja los errores en caso de que ocurran
+      console.error('Error al enviar la solicitud:', error);
+    }
+  };
+
+
+  
+
+  return (
+    <form className="cuadroTrabajo flex" onSubmit={handleSubmit}>
+      <div className="izquierdaTrabajo w-1/3 bg-gray-900">
+        <Link href={{ pathname: 'first', query: { email } }}>
+          <button className="atrasTrabajo"></button>
+        </Link>
+      </div>
+      <div className="derechaTrabajo w-2/3 flex flex-col justify-between">
+        <div className="superiorTrabajo flex">
+          <div className="superior-izquierda-Trabajo flex-grow">
+            <button className="t1"></button>
+          </div>
+          <div className="superior-derecha-Trabajo flex-grow">
+            <button className="t2"></button>
+          </div>
+        </div>
+        <div className="inferiorTrabajo flex">
+          <div className="inferior-izquierda-Trabajo flex-grow flex flex-col justify-between">
+            <div className="campoFiltro mb-4">
+              <label htmlFor="nombre" className="text-gray-400">Nombre:</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                value={filtro.nombre}
+                onChange={handleInputChange}
+                className="input1"
+              />
+            </div>
+            <div className="campoFiltro mb-4">
+              <label htmlFor="genero" className="text-gray-400">Género:</label>
+              <input
+                type="text"
+                id="genero"
+                name="genero"
+                value={filtro.genero}
+                onChange={handleInputChange}
+                className="input1"
+              />
+            </div>
+          </div>
+          <div className="inferior-derecha-Trabajo flex-grow flex flex-col justify-between">
+            <div className="campoFiltro mb-4">
+              <label htmlFor="edad" className="text-gray-400">Edad:</label>
+              <input
+                type="number"
+                id="edad"
+                name="edad"
+                value={filtro.edad}
+                onChange={handleNumberInputChange}
+                className="input1"
+              />
+            </div>
+            <div className="campoFiltro mb-4">
+              <label htmlFor="yearsDeExperiencia" className="text-gray-400">Años de Experiencia:</label>
+              <input
+                type="number"
+                id="yearsDeExperiencia"
+                name="yearsDeExperiencia"
+                value={filtro.yearsDeExperiencia}
+                onChange={handleNumberInputChange}
+                className="input1"
+              />
+            </div>
+            <button type="submit" className="input__submit">Filtrar</button>
+          </div>
+        </div>
+      </div>
+      <div className="usuariosFiltrados">
+        {usuariosFiltrados.map((usuario, index) => (
+          <div key={index} className="usuarioFiltrado">
+            <p>Nombre: {usuario.nombre}</p>
+            <p>Género: {usuario.genero}</p>
+            <p>Edad: {usuario.edad}</p>
+            <p>Years_Experiencia: {usuario.yearsDeExperiencia}</p>
+            {/* ... Agrega más detalles según tu modelo de datos */}
+          </div>
+        ))}
+      </div>
+    </form>
+  );
+};
+
+export default Trabajo;
+
+
+
+
+
+
+
+/*
+const Trabajo: React.FC = () => {
+    const router = useRouter();
+    const { email } = router.query;
+    return (
+       <form className="cuadroTrabajo"> 
+            <div className = "izquierdaTrabajo"> 
+                <Link href={{ pathname: 'first', query: { email } }}> <button className="atrasTrabajo" type="submit"></button> </Link>
+            </div>
+            <div className = "derechaTrabajo">
+                <div className = "superiorTrabajo">
+                    <div className = "superior-izquierda-Trabajo">
+                        <button className="t1" type="submit"></button>
+                    </div>
+                    <div  className = "superior-derecha-Trabajo">
+                        <button className="t2" type="submit"></button>
+                    </div>
+                </div>
+                <div className = "inferiorTrabajo">
+                    <div className = "inferior-izquierda-Trabajo">
+                        <button className="t3" type="submit"></button>
+                    </div>
+                    <div className = "inferior-derecha-Trabajo">
+                        <button className="t4" type="submit"></button>
+                    </div>
+                </div>
+            </div>
+        </form>   
+    );
+};
+export default Trabajo
+*/
