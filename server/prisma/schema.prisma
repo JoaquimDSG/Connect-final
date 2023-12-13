@@ -12,21 +12,21 @@ model Usuarios {
   id                     Int     @id @unique @default(autoincrement())
   nombre                 String
   apellido               String
-  email                  String  @unique
+  email                  String      @unique
   password               String
   edad                   Int
   Hobbie                 String? @default("Ninguno")
   Trabajo                String? @default("Ninguno")
-  Localidad              String
+  Localidad              String? @default("")
   Direccion              String?
   Pais                   String
   Preferencias_laborales String? @default("Ninguna")
   Genero                 String
   Experiencia_Laboral    Int?    @default(0)
-  Preferencia_distancia  Int?    @default(999)
+  Preferencia_distancia  Int?    @default(5)
   Que_necesitaria        String?
   user_that_liked        Int[]
-  Empresa                Boolean
+  Empresa                Boolean @default (false)
 }
 
 model Empleador {

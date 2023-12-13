@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React, { FormEvent, useState } from "react";
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 // Define la interfaz para los datos del usuario
 interface UserData {
@@ -68,6 +69,12 @@ const App: React.FC = () => {
 
           <div>
             <button className="input__submit" type="submit">Continuar</button>
+          </div>
+
+          <div>
+            <Link href="/registro">
+              <button className="input__submit" type="submit">Registro</button>
+            </Link>
           </div>
 
           <div> <img className="logo" src="isologo.png" alt="" /></div>
