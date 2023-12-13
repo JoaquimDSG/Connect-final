@@ -40,8 +40,8 @@ const EditarRegistro = ({ email }) => {
         setNuevoPais(data[0]?.Pais || '');
         setNuevasPreferencias_laborales(data[0]?.Preferencias_laborales || '');
         setNuevoGenero(data[0]?.Genero || '');
-        setNuevaExperiencia_Laboral(data[0]?.Experiencia_Laboral);
-        setNuevaPreferencia_distancia(data[0]?.Preferencia_distancia);
+        setNuevaExperiencia_Laboral(data[0]?.Experiencia_Laboral || 0);
+        setNuevaPreferencia_distancia(data[0]?.Preferencia_distancia || 5);
         setNuevaQue_necesitaria(data[0]?.Que_necesitaria || '');
         setNuevaEmpresa(data[0]?.Empresa || false)
       } catch (error) {
@@ -121,7 +121,7 @@ const EditarRegistro = ({ email }) => {
         <label>Nuevo Apellido:</label><input type="text" value={nuevoApellido} onChange={(e) => setNuevoApellido(e.target.value)} />
         </div>
         <div>
-        <label>Nueva Edad:</label><input type="number" value={nuevaEdad} onChange={(e) => setNuevaEdad(Number(e.target.value))} />
+        <label>Nueva Edad:</label><input type="number" value={nuevaEdad} onChange={(e) => setNuevaEdad(parseInt(e.target.value, 10))} />
         </div>
         <div>
         <label>Nuevo Hobbie:</label><input type="text" value={nuevoHobbie} onChange={(e) => setNuevoHobbie(e.target.value)} />
@@ -145,10 +145,10 @@ const EditarRegistro = ({ email }) => {
         <label>Nuevo Genero:</label><input type="text" value={nuevoGenero} onChange={(e) => setNuevoGenero(e.target.value)} />
         </div>
         <div>
-        <label>Nueva Experiencia Laboral:</label><input type="text" value={nuevaExperiencia_Laboral} onChange={(e) => setNuevaExperiencia_Laboral(e.target.value)} />
+        <label>Nueva Experiencia Laboral:</label><input type="number" value={nuevaExperiencia_Laboral} onChange={(e) => setNuevaExperiencia_Laboral(parseInt(e.target.value, 10))} />
         </div>
         <div>
-        <label>Nueva Preferencia distancia:</label><input type="text" value={nuevaPreferencia_distancia} onChange={(e) => setNuevaPreferencia_distancia(e.target.value)} />
+        <label>Nueva Preferencia distancia:</label><input type="number" value={nuevaPreferencia_distancia} onChange={(e) => setNuevaPreferencia_distancia(parseInt(e.target.value, 10))} />
         </div>
         <div>
         <label>Nueva Que necesitaria:</label><input type="text" value={nuevaQue_necesitaria} onChange={(e) => setNuevaQue_necesitaria(e.target.value)} />

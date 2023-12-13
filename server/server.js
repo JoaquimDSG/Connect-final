@@ -150,8 +150,9 @@ app.post('/api/modificar-registro', async (req, res) => {
       },
     });
 
-//    res.redirect(302, `/empleados?email=${encodeURIComponent(email)}`);
-    res.redirect(`/empleados?email=${encodeURIComponent(updatedUser.email)}`);
+  //    res.redirect(302, `/empleados?email=${encodeURIComponent(email)}`);
+  //    res.redirect(`/empleados?email=${encodeURIComponent(updatedUser.email)}`);
+  res.redirect('/empleados?email=$', {email});
   } catch (error) {
     console.error('Error al modificar el registro:', error);
     res.status(500).send('Error al modificar el registro');
